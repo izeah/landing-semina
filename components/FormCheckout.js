@@ -22,7 +22,7 @@ export default function FormCheckout() {
     useEffect(() => {
         const fetctData = async () => {
             try {
-                const res = await getData("api/v1/participants/payments");
+                const res = await getData("/payments");
                 res.data.forEach((res) => {
                     res.isChecked = false;
                 });
