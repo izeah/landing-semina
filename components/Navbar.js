@@ -1,9 +1,8 @@
 import Cookies from "js-cookie";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import NavLink from "../NavLink";
+import NavLink from "./NavLink";
 
 export default function Navbar() {
     const router = useRouter();
@@ -24,7 +23,7 @@ export default function Navbar() {
             <div className="container-fluid">
                 <Link href={"/"}>
                     <a className="navbar-brand">
-                        <Image src="/images/logo.svg" alt="semina" />
+                        <img src="/images/logo.svg" alt="semina" />
                     </a>
                 </Link>
                 <button
@@ -68,7 +67,7 @@ export default function Navbar() {
                                             role="button"
                                             data-bs-toggle="dropdown"
                                             aria-expanded="false">
-                                            <Image
+                                            <img
                                                 src="/images/avatar.png"
                                                 alt="semina"
                                                 width="60"
@@ -82,10 +81,11 @@ export default function Navbar() {
                                             role="button"
                                             aria-expanded="false"
                                             aria-controls="collapseExample">
-                                            <Image
+                                            <img
                                                 src="/images/avatar.png"
                                                 alt="semina"
                                                 width="60"
+                                                layout="responsive"
                                             />
                                         </a>
 

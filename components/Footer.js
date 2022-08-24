@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 export default function Footer() {
@@ -6,7 +5,7 @@ export default function Footer() {
         <footer className="footer bg-navy">
             <div className="container">
                 <a href="index.html">
-                    <Image src="/images/logo.svg" alt="semina" />
+                    <img src="/images/logo.svg" alt="semina" />
                 </a>
                 <div className="mt-3 d-flex flex-row flex-wrap footer-content align-items-baseline">
                     <p className="paragraph">

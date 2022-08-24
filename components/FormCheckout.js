@@ -1,5 +1,4 @@
 import Cookies from "js-cookie";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
@@ -189,7 +188,7 @@ export default function FormCheckout() {
                         <div className="col-lg-4" key={payment._id}>
                             <label className="payment-radio h-100 d-flex justify-content-between align-items-center">
                                 <div className="d-flex align-items-center gap-4">
-                                    <Image
+                                    <img
                                         src={`${process.env.NEXT_PUBLIC_API_IMAGE}/${payment.image.name}`}
                                         alt=""
                                     />
@@ -214,7 +213,7 @@ export default function FormCheckout() {
                     Pay Now
                 </Button>
                 <div>
-                    <Image src="/icons/ic-secure.svg" alt="" />
+                    <img src="/icons/ic-secure.svg" alt="" />
                     <span>Your payment is secure and encrypted</span>
                 </div>
             </div>

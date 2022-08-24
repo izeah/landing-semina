@@ -1,15 +1,14 @@
-import Image from "next/image";
 import React from "react";
 
 export default function Story() {
     return (
         <section className="stories">
             <div className="d-flex flex-row justify-content-center align-items-center container">
-                <Image
+                <img
                     src="/images/story.png"
                     alt="semina"
                     className="d-none d-lg-block"
-                    width="515"
+                    width={"515"}
                 />
                 <div className="d-flex flex-column">
                     <div>

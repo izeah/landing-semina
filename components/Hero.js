@@ -1,4 +1,3 @@
-import Image from "next/image";
 import React from "react";
 
 export default function Hero() {
@@ -23,9 +22,9 @@ export default function Hero() {
             </div>
 
             <div className="d-flex flex-row flex-nowrap justify-content-center align-items-center gap-5 header-image">
-                <Image src="/images/1.png" alt="semina" className="img-1" />
-                <Image src="/images/2.png" alt="semina" className="img-2" />
-                <Image src="/images/1.png" alt="semina" className="img-1" />
+                <img src="/images/1.png" alt="semina" className="img-1" />
+                <img src="/images/2.png" alt="semina" className="img-2" />
+                <img src="/images/1.png" alt="semina" className="img-1" />
             </div>
         </>
     );

@@ -1,8 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import CardTitle from "../CardTitle";
 import { formatDate } from "../utils/formatDate";
+import CardTitle from "./CardTitle";
 
 export default function CardEvent({ data, title, subTitle }) {
     return (
@@ -18,9 +17,10 @@ export default function CardEvent({ data, title, subTitle }) {
                                         ? "free"
                                         : `$${data.tickets[0].price}`}
                                 </span>
-                                <Image
+                                <img
                                     src={`${process.env.NEXT_PUBLIC_API_IMAGE}/${data.image.name}`}
                                     alt="semina"
+                                    layout="fill"
                                 />
                                 <div className="card-content">
                                     <div className="card-title">
