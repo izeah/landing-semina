@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { getData, postData } from "../utils/fetchData";
 import Button from "./Button";
 
-export default function FormCheckout() {
+export default function FormCheckout({ tickets }) {
     const router = useRouter();
 
     const [form, setForm] = useState({
@@ -15,6 +15,7 @@ export default function FormCheckout() {
         role: "",
         payment: "",
         event: router.query.id,
+        tickets: tickets,
     });
 
     const [payments, setPayments] = useState([]);
@@ -22,7 +23,11 @@ export default function FormCheckout() {
     useEffect(() => {
         const fetctData = async () => {
             try {
-                const res = await getData("/payments");
+                const res = await getData(
+                    "/payments",
+                    {},
+                    Cookies.get("token")
+                );
                 res.data.forEach((res) => {
                     res.isChecked = false;
                 });
@@ -63,9 +68,10 @@ export default function FormCheckout() {
                     email: form.email,
                     role: form.role,
                 },
+                tickets: form.tickets,
             };
             const res = await postData(
-                "api/v1/participants/checkout",
+                "/checkout",
                 payload,
                 Cookies.get("token")
             );
@@ -191,6 +197,8 @@ export default function FormCheckout() {
                                     <img
                                         src={`${process.env.NEXT_PUBLIC_API_IMAGE}/${payment.image.name}`}
                                         alt=""
+                                        width={50}
+                                        height={50}
                                     />
                                     <div>{payment.type}</div>
                                 </div>
