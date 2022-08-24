@@ -2,8 +2,8 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import Button from "../Button";
 import { getData, postData } from "../utils/fetchData";
+import Button from "./Button";
 
 export default function FormCheckout() {
     const router = useRouter();

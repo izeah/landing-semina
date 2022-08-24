@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import Button from "../Button";
-import TextInput from "../TextInput";
 import { postData } from "../utils/fetchData";
+import Button from "./Button";
+import TextInput from "./TextInput";
 
 export default function FormSignin() {
     const router = useRouter();

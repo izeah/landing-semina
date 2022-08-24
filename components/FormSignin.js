@@ -2,9 +2,9 @@ import Cookies from "js-cookie";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import Button from "../Button";
-import TextInput from "../TextInput";
 import { postData } from "../utils/fetchData";
+import Button from "./Button";
+import TextInput from "./TextInput";
 
 export default function FormSignin() {
     const router = useRouter();
@@ -19,7 +19,7 @@ export default function FormSignin() {
 
     const handleSubmit = async () => {
         try {
-            const res = await postData("api/v1/participants/auth/signin", form);
+            const res = await postData("/auth/signin", form);
 
             toast.success("berhasil signin", {
                 position: "top-right",
