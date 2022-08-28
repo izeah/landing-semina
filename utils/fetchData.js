@@ -16,3 +16,11 @@ export function postData(url, payload, token) {
         },
     });
 }
+
+export function putData(url, payload, token) {
+    return axios.put(url, payload, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+}

@@ -68,7 +68,7 @@ export default function Navbar() {
                                 <div className="navbar-nav ms-auto">
                                     <div className="nav-item dropdown d-flex flex-column flex-lg-row align-items-lg-center authenticated gap-3">
                                         <span className="text-light d-none d-lg-block">
-                                            Hello, Shayna M
+                                            Hello, {Cookies.get("username")}
                                         </span>
 
                                         <a

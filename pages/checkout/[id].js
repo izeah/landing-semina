@@ -1,5 +1,6 @@
 import moment from "moment";
 import Head from "next/head";
+import { useRouter } from "next/router";
 import Footer from "../../components/Footer";
 import FormCheckout from "../../components/FormCheckout";
 import Navbar from "../../components/Navbar";
@@ -7,10 +8,14 @@ import { getData } from "../../utils/fetchData";
 import { formatDate } from "../../utils/formatDate";
 
 export default function Checkout({ detailPage }) {
+    const router = useRouter();
+    const { ticketId } = router.query;
     let activeTickets = detailPage.tickets
         .filter(
             (item) =>
-                item.statusTicketCategory && moment().isBefore(item.expiredAt)
+                item.statusTicketCategory &&
+                moment().isBefore(item.expiredAt) &&
+                item._id === ticketId
         )
         .map((item) => ({
             ticketCategories: { type: item.type, price: item.price },
@@ -67,14 +72,12 @@ export default function Checkout({ detailPage }) {
                             </div>
                         </div>
                         <div className="total-price">
-                            {" "}
                             {activeTickets[0].ticketCategories.price === 0
                                 ? "free"
                                 : `$${activeTickets[0].ticketCategories.price}`}
                         </div>
                     </div>
 
-                    {/* form */}
                     <FormCheckout tickets={activeTickets} />
                 </div>
             </section>

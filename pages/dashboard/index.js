@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import moment from "moment";
 import Head from "next/head";
 import Footer from "../../components/Footer";
@@ -70,7 +69,7 @@ export default function Dashboard({ data }) {
                             </div>
                             <div className="total-price">
                                 {" "}
-                                {data.historyEvent.price === 0
+                                {data.totalPay === 0
                                     ? "free"
                                     : `$${data.totalPay}`}
                             </div>

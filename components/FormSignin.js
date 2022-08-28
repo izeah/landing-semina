@@ -32,6 +32,7 @@ export default function FormSignin() {
                     progress: undefined,
                 });
                 Cookies.set("token", res.data.token);
+                Cookies.set("username", res.data.firstName);
                 router.push("/");
             }
         } catch (err) {

@@ -7,6 +7,7 @@ import Button from "./Button";
 
 export default function FormCheckout({ tickets }) {
     const router = useRouter();
+    const { organizer } = router.query;
 
     const [form, setForm] = useState({
         email: "",
@@ -21,10 +22,10 @@ export default function FormCheckout({ tickets }) {
     const [payments, setPayments] = useState([]);
 
     useEffect(() => {
-        const fetctData = async () => {
+        const fetchData = async () => {
             try {
                 const res = await getData(
-                    "/payments",
+                    `/payments/${organizer}`,
                     {},
                     Cookies.get("token")
                 );
@@ -37,12 +38,12 @@ export default function FormCheckout({ tickets }) {
             }
         };
 
-        fetctData();
+        fetchData();
     }, []);
 
     useEffect(() => {
         let paymentId = "";
-        payments.filter((payment) => {
+        payments.forEach((payment) => {
             if (payment.isChecked) {
                 paymentId = payment._id;
             }

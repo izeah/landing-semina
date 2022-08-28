@@ -27,12 +27,14 @@ export default function DetailPage({ detailPage, id }) {
     }, []);
 
     const router = useRouter();
-    const handleSubmit = () => {
+    const handleSubmit = (ticketId, organizer) => {
         const token = Cookies.get("token");
         if (!token) {
             return router.push("/signin");
         } else {
-            router.push(`/checkout/${id}`);
+            router.push(
+                `/checkout/${id}?ticketId=${ticketId}&organizer=${organizer}`
+            );
         }
     };
     return (
@@ -62,7 +64,7 @@ export default function DetailPage({ detailPage, id }) {
                     <div className="d-flex flex-column description">
                         <div className="headline">{detailPage.title}</div>
                         <div className="event-details">
-                            <h6>Event Details</h6>
+                            <h6 className="mt-5">Event Details</h6>
                             <p className="details-paragraph">
                                 {detailPage.about}
                             </p>
@@ -121,7 +123,7 @@ export default function DetailPage({ detailPage, id }) {
                         </div>
                         <hr />
 
-                        <h6>Get Ticket</h6>
+                        <h6>{detailPage.tickets[0].type}</h6>
                         <div className="price my-3">
                             {detailPage.tickets[0].price === 0
                                 ? "free"
@@ -144,11 +146,73 @@ export default function DetailPage({ detailPage, id }) {
                         {detailPage.stock !== 0 && (
                             <Button
                                 variant={"btn-green"}
-                                action={() => handleSubmit()}>
+                                action={() =>
+                                    handleSubmit(
+                                        detailPage.tickets[0]._id,
+                                        detailPage.organizer
+                                    )
+                                }>
                                 Join Now
                             </Button>
                         )}
                     </div>
+                </div>
+                <div className="mt-5 row justify-content-lg-center">
+                    {detailPage.tickets.map((ticket, index) =>
+                        ticket.statusTicketCategory &&
+                        moment().isBefore(ticket.expiredAt) ? (
+                            <div
+                                key={index}
+                                className={`col card-event mb-3 ${
+                                    index !== detailPage.tickets.length - 1
+                                        ? "me-3"
+                                        : ""
+                                }`}>
+                                <h6>{ticket.type}</h6>
+                                <div className="price my-3">
+                                    {ticket.price === 0
+                                        ? "free"
+                                        : `$${ticket.price}`}
+                                    <span>/person</span>
+                                </div>
+                                <div className="d-flex gap-3 align-items-center card-details">
+                                    <img
+                                        src="/icons/ic-marker.svg"
+                                        alt="semina"
+                                    />{" "}
+                                    {detailPage.venueName}
+                                </div>
+                                <div className="d-flex gap-3 align-items-center card-details">
+                                    <img
+                                        src="/icons/ic-time.svg"
+                                        alt="semina"
+                                    />{" "}
+                                    {moment(detailPage.date).format("HH.MM A")}
+                                </div>
+                                <div className="d-flex gap-3 align-items-center card-details">
+                                    <img
+                                        src="/icons/ic-calendar.svg"
+                                        alt="semina"
+                                    />{" "}
+                                    {formatDate(detailPage.date)}
+                                </div>
+                                {detailPage.stock !== 0 && (
+                                    <Button
+                                        variant={"btn-green"}
+                                        action={() =>
+                                            handleSubmit(
+                                                ticket._id,
+                                                detailPage.organizer
+                                            )
+                                        }>
+                                        Join Now
+                                    </Button>
+                                )}
+                            </div>
+                        ) : (
+                            ""
+                        )
+                    )}
                 </div>
             </div>
 
