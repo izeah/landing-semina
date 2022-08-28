@@ -21,7 +21,7 @@ export default function FormSignin() {
 
     const handleSubmit = async () => {
         try {
-            const res = await postData("api/v1/participants/auth/signup", form);
+            const res = await postData("/auth/signup", form);
             if (res.data) {
                 toast.success("berhasil signup", {
                     position: "top-right",
@@ -85,9 +85,14 @@ export default function FormSignin() {
                 onChange={handleChange}
             />
 
-            <div className="d-grid mt-2">
+            <div className="d-grid mt-2 gap-4">
                 <Button variant={"btn-green"} action={() => handleSubmit()}>
                     Sign Up
+                </Button>
+                <Button
+                    action={() => router.push("/signin")}
+                    variant="btn-navy">
+                    Already have account? Sign In here!
                 </Button>
             </div>
         </form>

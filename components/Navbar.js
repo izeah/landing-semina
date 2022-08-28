@@ -2,6 +2,7 @@ import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import NavLink from "./NavLink";
 
 export default function Navbar() {
@@ -13,7 +14,17 @@ export default function Navbar() {
     }, []);
 
     const handleLogout = () => {
-        console.log("click");
+        toast.success("berhasil logout", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+
+        setToken("");
         Cookies.remove("token");
         router.push("/");
     };
@@ -114,7 +125,11 @@ export default function Navbar() {
                                                 </a>
                                             </li>
                                             <li onClick={() => handleLogout()}>
-                                                <a className="dropdown-item">
+                                                <a
+                                                    className="dropdown-item"
+                                                    style={{
+                                                        cursor: "pointer",
+                                                    }}>
                                                     Sign Out
                                                 </a>
                                             </li>
@@ -149,7 +164,13 @@ export default function Navbar() {
                                                     onClick={() =>
                                                         handleLogout()
                                                     }>
-                                                    <a className="list-group-item"></a>
+                                                    <a
+                                                        className="list-group-item"
+                                                        style={{
+                                                            cursor: "pointer",
+                                                        }}>
+                                                        Logout
+                                                    </a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -21,17 +21,19 @@ export default function FormSignin() {
         try {
             const res = await postData("/auth/signin", form);
 
-            toast.success("berhasil signin", {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            Cookies.set("token", res.data.token);
-            router.push("/");
+            if (res.data) {
+                toast.success("berhasil signin", {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                Cookies.set("token", res.data.token);
+                router.push("/");
+            }
         } catch (err) {
             console.log(err);
         }

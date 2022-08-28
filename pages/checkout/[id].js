@@ -98,6 +98,6 @@ export async function getServerSideProps(context) {
     const res = req.data;
 
     return {
-        props: { detailPage: res, id: context.params.id },
+        props: { detailPage: res },
     };
 }
